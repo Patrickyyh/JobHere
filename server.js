@@ -13,9 +13,10 @@ import jobRouter from './routes/jobRoutes.js'
 
 
 // for deployment 
-import {dirname} from 'path'
-import {fileURLToPath} from 'url'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 import path from 'path'
+
 
 // sercurity protection middleware
 import helmet from 'helmet';
