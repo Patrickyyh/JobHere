@@ -231,11 +231,11 @@ const Stream = () => {
 
     <div id = "control">
         <button id ="button-configure" onClick={reload}>
-         <Link to="/lobby">
+         <a href = "/lobby">
            <div className = "control-container" id = "leave-btn" >
                 <img src ={phone} />
                </div>
-         </Link>
+         </a>
         </button>
       </div>
       
