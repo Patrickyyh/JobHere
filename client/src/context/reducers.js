@@ -27,12 +27,18 @@ import { CLEAR_ALERT, DISPLAY_ALERT,
         SHOW_STATS_SUCCESS , 
         CLEAR_FILTERS, 
         CHANGE_PAGE , 
+        LEAVE_STREAM, 
     } from './actions';
 
 import { initialState } from './appContext';
 
 
 const reducers = (state, action) => {
+
+    // Join the stream 
+    if(action.type === LEAVE_STREAM){
+        return {...state , isStreaming: !state.isStreaming}
+    }
 
     // Toggle the sidebar 
     if(action.type === TOGGLE_SIDEBAR){

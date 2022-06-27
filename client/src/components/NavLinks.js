@@ -17,7 +17,7 @@ export const NavLinks = ({toggleSidebar}) => {
                        }
                        key = {id}
                        onClick = {toggleSidebar}
-                   >
+                   > 
                    <span className='icon'>{icon}</span>
                    {text}
                    </NavLink>

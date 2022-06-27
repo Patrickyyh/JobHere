@@ -32,6 +32,7 @@ import {
     SHOW_STATS_SUCCESS ,
     CLEAR_FILTERS,
     CHANGE_PAGE ,
+    LEAVE_STREAM, 
 } from './actions';
 
 import reducers from './reducers';
@@ -72,6 +73,7 @@ export const initialState = {
   searchType: 'all',
   sort : 'latest',
   sortOptions: ['latest', 'oldest','a-z','z-a'],
+  isStreaming: false,
 }
 
 const AppContext = React.createContext();
@@ -158,6 +160,14 @@ const clearAlert = () =>{
             type:CLEAR_VALUES
         })
 
+ }
+
+
+ // add or join the stream
+ const leaveStream  = () => {
+    dispatch({ 
+            type: LEAVE_STREAM,
+    })
  }
 
 
@@ -426,7 +436,8 @@ const changePage = (page) => {
                                                       createJob,     getJobs,
                                                       setEditJob ,   editJob ,
                                                       deleteJob  ,   showStats,
-                                                      clearFilter , changePage            }}>
+                                                      clearFilter , changePage ,
+                                                      leaveStream,          }}>
                 {children}
                  </AppContext.Provider>
           )

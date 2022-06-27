@@ -195,6 +195,7 @@ const showStats = async(req,res) => {
     
       //javascript reduce over here 
       // return the number of pending, interview .....
+    console.log('test job stats')
     res.status(StatusCodes.OK).json({defaultStats , monthlyApplications});
 
 

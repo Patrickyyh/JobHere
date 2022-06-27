@@ -4,5 +4,6 @@ import Landing from './Landing'
 import { Register } from './Register'
 import { Error } from './Error'
 import ProtectedRoute from './ProtectedRoute'
+import Stream from './Stream'
 
-export{ Landing,Register,Error ,ProtectedRoute}
+export{ Landing,Register,Error ,ProtectedRoute,Stream}

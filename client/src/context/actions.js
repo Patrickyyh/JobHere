@@ -62,4 +62,7 @@ export const CLEAR_FILTERS = 'CLEAR_FILTERS'
 // change the page 
 export const CHANGE_PAGE = 'CHANGE_PAGE'
 
+// join or create a stream room
+export const LEAVE_STREAM = 'LEAVE_STREAM';
+
 
