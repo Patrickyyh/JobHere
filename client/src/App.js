@@ -30,11 +30,12 @@ function App() {
               <Route path = "add-job" element  = {<AddJobs />}/>
               <Route path = "profile" element  = {<Profile />}/>
               <Route path = 'lobby'   element  = {<Lobby />}/> 
-              <Route path = "/stream/:roomId"   element  = {<Stream /> } /> 
+              
           </Route>
 
           <Route path = "/register" element  = { <Register/>} />
           <Route path = "/landing"  element  = { <Landing/>} />
+          <Route path = "/stream/:roomId"   element  = {<Stream /> } /> 
           <Route path = "*"         element  = { <Error/>} />
     </Routes>
    

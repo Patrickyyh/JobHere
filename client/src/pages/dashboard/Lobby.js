@@ -53,7 +53,7 @@ const Lobby = () => {
                   type='submit'
                   onClick={handleSubmit}
                >
-               submit
+               Join the room
                </button>
 
             </div>

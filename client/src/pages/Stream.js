@@ -231,7 +231,7 @@ const Stream = () => {
 
     <div id = "control">
         <button id ="button-configure" onClick={reload}>
-         <a href = "/profile">
+         <a href = "/lobby">
            <div className = "control-container" id = "leave-btn" >
                 <img src ={phone} />
                </div>
