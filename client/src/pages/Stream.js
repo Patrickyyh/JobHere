@@ -208,7 +208,7 @@ const Stream = () => {
     const reload =async ()=>{
         await channel.leave();
         await client.logout();
-        window.location.reload();
+        // window.location.reload();
     }
 
 

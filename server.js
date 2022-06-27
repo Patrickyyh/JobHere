@@ -48,7 +48,7 @@ app.use(express.static(path.resolve(__dirname, './client/build')))
 // Security Protection 
 
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 
