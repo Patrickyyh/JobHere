@@ -58,15 +58,13 @@ app.use(mongoSanitize());
 const port = process.env.PORT || 5001
 
 
-
- 
-
 // set up the routes
 app.use('/api/v1/auth',authRouter); 
 app.use('/api/v1/jobs',authenticateUser,jobRouter); 
 
 
-For deployment
+// For deployment
+// uncomment this part only for deployment 
 app.get('*' , (req,res)=>{
     res.sendFile(path.resolve(__dirname ,'./client/build','index.html'))
 })
