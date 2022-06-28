@@ -1,5 +1,23 @@
 import styled from 'styled-components'
 const Wrapper = styled.main`
+  body{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #222222;
+  }
+
+
+  circle,
+  rect,
+  line {
+    stroke-width: 10px;
+    stroke-linecap: round;
+    fill: transparent;
+  } 
+
+
   nav {
     width: var(--fluid-width);
     max-width: var(--max-width);
