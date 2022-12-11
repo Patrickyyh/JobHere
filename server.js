@@ -51,10 +51,11 @@ import passport from 'passport';
 if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'));
 }
-
 // for deployment
 const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use(express.static(path.resolve(__dirname, './client/build')))
+
+
 
 // Security Protection
 
@@ -71,8 +72,6 @@ app.use(mongoSanitize());
 //
 
 
-// set up the port over here
-const port = process.env.PORT || 5001
 
 
 
@@ -86,11 +85,11 @@ app.use('/api/v1/jobs',authenticateUser,jobRouter);
 app.get('*' , (req,res)=>{
     res.sendFile(path.resolve(__dirname ,'./client/build','index.html'))
 })
-
-
-
 app.use(notFoundMiddleWare)
 app.use(errorHandlerMiddle)
+// set up the port over here
+const port = process.env.PORT || 5001
+
 
 const start = async () =>{
     try {
