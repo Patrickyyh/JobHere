@@ -25,9 +25,7 @@ import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit';
 
 const app = express();
-if(process.env.NODE_ENV !== 'production'){
-    app.use(morgan('dev'))
-}
+
 // Google auth
 // const passport = require('passport');
 // const GoogleStrategy  = require('passport-google-oauth20').Strategy
