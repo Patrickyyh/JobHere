@@ -15,7 +15,7 @@ const initialState = {
 
 
 export const Register = () => {
-  const  [values , setValues] = useState(initialState);
+  const  [values, setValues] = useState(initialState);
   const state = useAppContext();
 
   const {user} = useAppContext();
@@ -30,61 +30,69 @@ export const Register = () => {
   }, [user, navigate]);
 
 
-  const {isLoading , showAlert,displayAlert,registerUser,loginUser} = useAppContext();
+  const {isLoading , showAlert,displayAlert,registerUser,loginUser,loginGoogle } = useAppContext();
   // console.log(state);
-  
+
   const toggleMember =  () =>{
       setValues({...values,isMemeber: !values.isMemeber})
   }
 
   const handleChange = (e) => {
-    //update the values in the state 
+    //update the values in the state
     setValues({...values,[e.target.name]: e.target.value})
-    
+
   }
-  
+
   const onSubmit = (e) =>{
     e.preventDefault();
     const {name , email, password,isMemeber} = values;
     if(! email || !password || (!isMemeber && !name)){
-       // call the the dispatcher over here 
-       displayAlert(); 
+       // call the the dispatcher over here
+       displayAlert();
        return;
-       
+
     }
 
-    const currentUser = {name , email , password}; 
+    const currentUser = {name , email , password};
     if(isMemeber){
-        // Login in the user 
+        // Login in the user
         loginUser(currentUser);
     }else{
         // register the user and passing the value of the user into the
         // currentUser
-        registerUser(currentUser); 
+        registerUser(currentUser);
     }
-    
-    
-    console.log(values);
+
+
 
   }
-  
- 
+
+
   return (
     <Wrapper className='full-page'>
+
       <form className='form' onSubmit={onSubmit}>
          <Logo />
          <h3>{values.isMemeber? 'Login':'Register'}</h3>
           {showAlert && <Alert />}
          {/* Now set up another componentsFormRow */}
-         {!values.isMemeber 
-            && 
+         {!values.isMemeber
+            &&
           <FormRow type = "text" name = "name" value = {values.name} handleChange = {handleChange}/>
          }
          <FormRow type = "email" name = "email" value = {values.email} handleChange = {handleChange}/>
          <FormRow type = "password" name = "password" value = {values.password} handleChange = {handleChange}/>
          <button type ="submit" className='btn btn-block' disabled = {isLoading}>
            submit
-         </button>
+         </button >
+
+        {/* <a href='http://localhost:4000/api/v1/auth/google'> */}
+         <button type = "button" className='btn btn-block' disabled = {isLoading} onClick = {onClick} >
+            Login with Google
+         </button >
+        {/* </a> */}
+
+
 
          <p>
            {values.isMemeber ? 'Not a member yet' : 'Already a member ?'}
@@ -95,7 +103,20 @@ export const Register = () => {
              </button>
          </p>
 
+
+        <p>
+            <button type = "button" className='member-btn'>
+                {"forget password?"}
+            </button>
+          </p>
+
+
+
+
       </form>
+
+
+
 
 
     </Wrapper>

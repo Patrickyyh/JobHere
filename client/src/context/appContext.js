@@ -11,6 +11,9 @@ import {
     LOGIN_USER_BEGIN  ,
     LOGIN_USER_SUCCESS,
     LOGIN_USER_ERROR   ,   
+    LOGIN_GOOGLE_USER_BEGIN  ,
+    LOGIN_GOOGLE_USER_SUCCESS,
+    LOGIN_GOOGLE_USER_ERROR  ,
     LOGOUT_USER,
     TOGGLE_SIDEBAR,
     UPDATE_USER_BEGIN,
@@ -258,6 +261,21 @@ const clearAlert = () =>{
         dispatch({ type: LOGOUT_USER })
         removesUserToLocalStorage();
    }
+
+
+
+const loginGoogle = async ()=>{
+      try {
+            const response = await axios.get('http://localhost:4000/api/v1/auth/google')
+            console.log(response);
+
+      } catch (error) {
+            dispatch({
+                 type: LOGIN_GOOGLE_USER_ERROR,
+                 payload: {msg: error.response.data.msg}
+            })
+      }
+} 
    
  // for update user
  const updateUser = async (currentUser) => {
@@ -346,7 +364,7 @@ const clearAlert = () =>{
             addUserToLocalStorage({user, token,location});
 
          } catch (error) {
-             console.log(error.response);
+            
              dispatch({
                  type : REGISTER_USER_ERROR,
                  payload: {msg: error.response.data.msg}, 
@@ -437,7 +455,7 @@ const changePage = (page) => {
                                                       setEditJob ,   editJob ,
                                                       deleteJob  ,   showStats,
                                                       clearFilter , changePage ,
-                                                      leaveStream,          }}>
+                                                      leaveStream,  loginGoogle        }}>
                 {children}
                  </AppContext.Provider>
           )

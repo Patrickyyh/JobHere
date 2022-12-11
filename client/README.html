@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="file:////Users/yeyuhao1234/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
       
       
       
@@ -263,6 +263,27 @@ pre[data-line] .line-highlight[data-end]:after {
       <div class="mume markdown-preview  ">
       <h1 class="mume-header" id="jobify">Jobify</h1>
 
+<h2 class="mume-header" id="mvc-introduction">MVC introduction</h2>
+
+<ol>
+<li>simply a design or architectural pattern used in softeware engineering.</li>
+<li>model
+<ul>
+<li>a model is a design or structure</li>
+<li>model determines how a database is structured, defining a section of application that interactes with the database</li>
+</ul>
+</li>
+<li>View
+<ul>
+<li>where end users intereact within the application.</li>
+</ul>
+</li>
+<li>Controller
+<ul>
+<li>The controller interacts with the model and serves the response and functionality to the view. When an end user makes a request. The request will be sent to the controller which interacts with the database.</li>
+</ul>
+</li>
+</ol>
 <h4 class="mume-header" id="track-your-job-search">Track Your Job Search</h4>
 
 <p>Project in Action - <a href="https://www.jobify.live/">Jobify</a></p>
@@ -3764,6 +3785,16 @@ value<span class="token operator">=</span><span class="token punctuation">{</spa
   <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
 <span class="token punctuation">)</span>
 </pre><h4>SetEditJob</h4>
+<ul>
+<li>The target of the <code>SetEditJob</code>
+<ul>
+<li>When the user try to click edit button in the all jobs. The User will be navigated</li>
+<li>to the add jobs</li>
+<li>So we use the <code>SetEditJob</code> to fetch the corresponding job information and display them<br>
+on the form.</li>
+</ul>
+</li>
+</ul>
 <pre data-role="codeBlock" data-info="js" class="language-javascript">actions<span class="token punctuation">.</span><span class="token property-access">js</span>
 <span class="token keyword module keyword-export">export</span> <span class="token keyword keyword-const">const</span> <span class="token constant">SET_EDIT_JOB</span> <span class="token operator">=</span> <span class="token string">&apos;SET_EDIT_JOB&apos;</span>
 </pre><pre data-role="codeBlock" data-info="js" class="language-javascript">appContext<span class="token punctuation">.</span><span class="token property-access">js</span>
@@ -3807,6 +3838,9 @@ value<span class="token operator">=</span><span class="token punctuation">{</spa
   <span class="token function">createJob</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </pre><h4>Edit Job - Server</h4>
+<ul>
+<li>Implementation of the updateJob logic at the backend</li>
+</ul>
 <pre data-role="codeBlock" data-info="js" class="language-javascript">jobsController<span class="token punctuation">.</span><span class="token property-access">js</span>
 
 <span class="token keyword keyword-const">const</span> <span class="token function-variable function">updateJob</span> <span class="token operator">=</span> <span class="token keyword keyword-async">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -3866,6 +3900,11 @@ value<span class="token operator">=</span><span class="token punctuation">{</spa
   res<span class="token punctuation">.</span><span class="token method function property-access">status</span><span class="token punctuation">(</span><span class="token maybe-class-name">StatusCodes</span><span class="token punctuation">.</span><span class="token constant">OK</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span> job <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </pre><h4>Check Permissions</h4>
+<ul>
+<li>When we login the account of another user</li>
+<li>We still could update the job of previous user by the jobID</li>
+<li>So we need check Permissions to prevent this from happening</li>
+</ul>
 <pre data-role="codeBlock" data-info="js" class="language-javascript">jobsController<span class="token punctuation">.</span><span class="token property-access">js</span>
 
 <span class="token keyword keyword-const">const</span> <span class="token function-variable function">updateJob</span> <span class="token operator">=</span> <span class="token keyword keyword-async">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -4381,6 +4420,12 @@ monthlyApplications <span class="token operator">=</span> monthlyApplications
   <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </pre><h4>Filter</h4>
+<ul>
+<li>To set up the search job functionality.</li>
+<li>If the status is all, we neglect the query parameter</li>
+<li>otherwise ---&gt;</li>
+</ul>
+<p>query Params -&gt; Status</p>
 <h4>Get All Jobs - Initial Setup</h4>
 <pre data-role="codeBlock" data-info="js" class="language-javascript">jobsController<span class="token punctuation">.</span><span class="token property-access">js</span>
 
@@ -4455,6 +4500,12 @@ monthlyApplications <span class="token operator">=</span> monthlyApplications
     <span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span> jobs<span class="token punctuation">,</span> totalJobs<span class="token operator">:</span> jobs<span class="token punctuation">.</span><span class="token property-access">length</span><span class="token punctuation">,</span> numOfPages<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </pre><h4>Search</h4>
+<ul>
+<li>Target: everytime we type a single word on the search bar.The front end will send a request to the back end.</li>
+<li>Let&apos;s see how could we achieve this.</li>
+</ul>
+<p>We want the user fill the search bar only based on the position.<br>
+So the search bar is different from the jobtype and status.</p>
 <pre data-role="codeBlock" data-info="js" class="language-javascript">jobsController<span class="token punctuation">.</span><span class="token property-access">js</span>
 
 <span class="token keyword keyword-const">const</span> <span class="token function-variable function">getAllJobs</span> <span class="token operator">=</span> <span class="token keyword keyword-async">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -4471,11 +4522,12 @@ monthlyApplications <span class="token operator">=</span> monthlyApplications
     queryObject<span class="token punctuation">.</span><span class="token property-access">jobType</span> <span class="token operator">=</span> jobType
   <span class="token punctuation">}</span>
   <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>search<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &quot;i&quot; over here indicates the case insensitive match </span>
     queryObject<span class="token punctuation">.</span><span class="token property-access">position</span> <span class="token operator">=</span> <span class="token punctuation">{</span> $regex<span class="token operator">:</span> search<span class="token punctuation">,</span> $options<span class="token operator">:</span> <span class="token string">&apos;i&apos;</span> <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
   <span class="token comment">// NO AWAIT</span>
   <span class="token keyword keyword-let">let</span> result <span class="token operator">=</span> <span class="token maybe-class-name">Job</span><span class="token punctuation">.</span><span class="token method function property-access">find</span><span class="token punctuation">(</span>queryObject<span class="token punctuation">)</span>
-
+  
   <span class="token comment">// chain sort conditions</span>
   <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>sort <span class="token operator">===</span> <span class="token string">&apos;latest&apos;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     result <span class="token operator">=</span> result<span class="token punctuation">.</span><span class="token method function property-access">sort</span><span class="token punctuation">(</span><span class="token string">&apos;-createdAt&apos;</span><span class="token punctuation">)</span>
@@ -4912,7 +4964,8 @@ value<span class="token operator">=</span><span class="token punctuation">{</spa
 <span class="token keyword module keyword-export">export</span> <span class="token keyword module keyword-default">default</span> <span class="token maybe-class-name">PageButtonContainer</span>
 </pre><h4>Button Container</h4>
 <ul>
-<li>[Array.from] (<a href="https://youtu.be/zg1Bv4xubwo">https://youtu.be/zg1Bv4xubwo</a>)</li>
+<li>[Array.from] (<a href="https://youtu.be/zg1Bv4xubwo">https://youtu.be/zg1Bv4xubwo</a>)<br>
+The Array.from() static method creates a new, shallow-copied Array instance from an array-like or iterable object.</li>
 </ul>
 <pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token maybe-class-name">PageBtnContainer</span><span class="token punctuation">.</span><span class="token property-access">js</span>
 
@@ -5023,7 +5076,13 @@ value<span class="token operator">=</span><span class="token punctuation">{</spa
 
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
 
-</pre><pre data-role="codeBlock" data-info="js" class="language-javascript">server<span class="token punctuation">.</span><span class="token property-access">js</span>
+</pre><ul>
+<li>For deployment</li>
+<li>For every route the route goes to our server, we want to pointed it to the index.html</li>
+<li>The reason why we want to put it after the other routes</li>
+<li>we only would like to make the get redirector over here</li>
+</ul>
+<pre data-role="codeBlock" data-info="js" class="language-javascript">server<span class="token punctuation">.</span><span class="token property-access">js</span>
 
 <span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> dirname <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">&apos;path&apos;</span>
 <span class="token keyword module keyword-import">import</span> <span class="token imports"><span class="token punctuation">{</span> fileURLToPath <span class="token punctuation">}</span></span> <span class="token keyword module keyword-from">from</span> <span class="token string">&apos;url&apos;</span>
