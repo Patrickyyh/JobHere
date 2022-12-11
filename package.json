@@ -25,7 +25,7 @@
     "xss-clean": "^0.1.1"
   },
   "engines": {
-    "node": "12.11.1",
+    "node": "16.0.0",
     "npm": "7.10.0"
   },
   "name": "jobhere",
