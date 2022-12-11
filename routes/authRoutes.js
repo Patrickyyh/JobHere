@@ -12,7 +12,7 @@ dotenv.config();
 
 import passport from 'passport';
 import Google from 'passport-google-oauth20';
-const GoogleStrategy = Google.Strategy;
+// const GoogleStrategy = Google.Strategy;
 
 
 
@@ -30,84 +30,84 @@ const authlimter = rateLimit({
 
 let isRegister = false;
 
-passport.serializeUser(function(user, done) {
-    console.log("here1");
-    done(null,user._id);
-})
+// passport.serializeUser(function(user, done) {
+//     console.log("here1");
+//     done(null,user._id);
+// })
 
-passport.deserializeUser(function(id, done) {
-    console.log("here");
-    User.findById(id).then(user => {
-        done(null,user)
-    })
-  });
+// passport.deserializeUser(function(id, done) {
+//     console.log("here");
+//     User.findById(id).then(user => {
+//         done(null,user)
+//     })
+//   });
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/api/v1/auth/google/callback'
-} ,async (accessToken,refreshToken, profile, done)=> {
+// passport.use(new GoogleStrategy({
+//     clientID: process.env.GOOGLE_CLIENT_ID,
+//     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//     callbackURL: '/api/v1/auth/google/callback'
+// } ,async (accessToken,refreshToken, profile, done)=> {
 
-    // const {email,}
-    const {id,emails,displayName} = profile;
-    const {value} = emails[0]
-
-
-    const userExists = await User.findOne({googleId: id})
-    const userEmailExists = await User.findOne({email: value});
+//     // const {email,}
+//     const {id,emails,displayName} = profile;
+//     const {value} = emails[0]
 
 
-    if( !userExists && !userEmailExists  ){
+//     const userExists = await User.findOne({googleId: id})
+//     const userEmailExists = await User.findOne({email: value});
 
-        // sign up the user
-        // let name = displayName;
-        // let email = value;
-        // let password = 123456;
-        // const newUser = await User.create({email,password, name});
 
-        // redirect to the resiger page
-        isRegister = false;
-        done(null,isRegister);
+//     if( !userExists && !userEmailExists  ){
 
-    }else{
-        // skip the user creation
-        isRegister = true;
-        // console.log(userEmailExists);
-        // console.log("exist user");
-        // // done(null , userEmailExists);
-        // done(null, isRegister);
-        done(null ,isRegister);
+//         // sign up the user
+//         // let name = displayName;
+//         // let email = value;
+//         // let password = 123456;
+//         // const newUser = await User.create({email,password, name});
 
-    }
-})
+//         // redirect to the resiger page
+//         isRegister = false;
+//         done(null,isRegister);
 
-);
+//     }else{
+//         // skip the user creation
+//         isRegister = true;
+//         // console.log(userEmailExists);
+//         // console.log("exist user");
+//         // // done(null , userEmailExists);
+//         // done(null, isRegister);
+//         done(null ,isRegister);
+
+//     }
+// })
+
+// );
 
 // Then inject the rate-limit api into the post requests
 router.route('/register').post(authlimter,register)
 router.route('/login').post(authlimter,login)
-router.route('/findpassword').post(findPassword);
-// router.route('/google').get(google);
-router.get('/google' , passport.authenticate('google',{
-    scope: ['profile', 'email']
-}))
+// router.route('/findpassword').post(findPassword);
+// // router.route('/google').get(google);
+// router.get('/google' , passport.authenticate('google',{
+//     scope: ['profile', 'email']
+// }))
 
 
-router.get('/google/callback' , passport.authenticate('google'),function(req,res){
+// router.get('/google/callback' , passport.authenticate('google'),function(req,res){
 
-    // const {user} = req;
-    // console.log(user);
-    // const token = user.createJWT();
+//     // const {user} = req;
+//     // console.log(user);
+//     // const token = user.createJWT();
 
-    console.log(register);
+//     console.log(register);
 
-    // user.password = undefined;
-    // res.status(StatusCodes.OK).json({user, token, location: user.location});
+//     // user.password = undefined;
+//     // res.status(StatusCodes.OK).json({user, token, location: user.location});
 
-    res.redirect('http://localhost:3000/');
+//     res.redirect('http://localhost:3000/');
 
 
-})
+// })
 
 
 router.route('/updateUser').patch(authenticateUser, updateUser)
