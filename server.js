@@ -24,6 +24,7 @@ import xss from 'xss-clean';
 import mongoSanitize from 'express-mongo-sanitize'
 import rateLimit from 'express-rate-limit';
 
+const app = express();
 if(process.env.NODE_ENV !== 'production'){
     app.use(morgan('dev'))
 }
@@ -35,7 +36,7 @@ import cookieSession  from 'cookie-session';
 
 
 dotenv.config();
-const app = express();
+
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -54,8 +55,8 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 // for deployment
-// const __dirname = dirname(fileURLToPath(import.meta.url))
-// app.use(express.static(path.resolve(__dirname, './client/build')))
+const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use(express.static(path.resolve(__dirname, './client/build')))
 
 // Security Protection
 
@@ -84,9 +85,9 @@ app.use('/api/v1/jobs',authenticateUser,jobRouter);
 
 // For deployment
 // uncomment this part only for deployment
-// app.get('*' , (req,res)=>{
-//     res.sendFile(path.resolve(__dirname ,'./client/build','index.html'))
-// })
+app.get('*' , (req,res)=>{
+    res.sendFile(path.resolve(__dirname ,'./client/build','index.html'))
+})
 
 
 

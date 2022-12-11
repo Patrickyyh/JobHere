@@ -86,11 +86,6 @@ export const Register = () => {
            submit
          </button >
 
-        {/* <a href='http://localhost:4000/api/v1/auth/google'> */}
-         <button type = "button" className='btn btn-block' disabled = {isLoading} onClick = {onClick} >
-            Login with Google
-         </button >
-        {/* </a> */}
 
 
 
