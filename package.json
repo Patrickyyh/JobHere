@@ -19,6 +19,7 @@
     "passport": "^0.5.3",
     "passport-google-oauth20": "^2.0.0",
     "react-router-dom": "^6.3.0",
+    "serve": "^14.1.2",
     "update": "^0.7.4",
     "update-browserslist-db": "^1.0.10",
     "validator": "^13.7.0",
